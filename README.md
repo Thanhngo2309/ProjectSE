@@ -11,3 +11,8 @@ Dự án "Quản lý Quán Bi-a" là một giải pháp toàn diện nhằm nân
 *Cải thiện trải nghiệm khách hàng: Tích hợp các chức năng như đặt bàn trực tuyến, hệ thống tích điểm khách hàng thân thiết, và phản hồi khách hàng để nâng cao trải nghiệm và tăng mức độ hài lòng của khách hàng.
 
 *Bảo trì và quản lý trang thiết bị: Hỗ trợ theo dõi tình trạng trang thiết bị, lên lịch bảo trì định kỳ, và cảnh báo khi cần thay thế hoặc sửa chữa để đảm bảo quán luôn hoạt động ở trạng thái tốt nhất.
+# Công cụ sử dụng
+
+
+
+ReactJs

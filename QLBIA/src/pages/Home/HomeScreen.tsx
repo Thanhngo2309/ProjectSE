@@ -1,6 +1,6 @@
 import React from "react";
-
-import Header from "../layout/navbar/Header";
+import "./HomeScreem.css";
+import Header from "../../layout/navbar/NavBar";
 const HomeScreen = () => {
   return <Header />;
 };

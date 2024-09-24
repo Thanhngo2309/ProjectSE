@@ -1,8 +1,13 @@
 import React from "react";
 import "./HomeScreem.css";
-import Header from "../../layout/navbar/NavBar";
+import Header from "../../components/Header/Header";
+
 const HomeScreen = () => {
-  return <Header />;
+  return (
+    <div>
+      <Header />
+    </div>
+  );
 };
 
 export default HomeScreen;

@@ -1,4 +1,3 @@
-import React from "react";
 import "./AppDownload.css";
 import google_play from "../../assets/get-it-on-google-play-png-1.png";
 import app_store from "../../assets/get-on-app-store.png";

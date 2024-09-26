@@ -1,4 +1,3 @@
-import React from "react";
 import facebook_icon from "../../assets/icons8-facebook-48.png";
 import twiter_icon from "../../assets/icons8-twitter-48.png";
 import linkedin_icon from "../../assets/icons8-linkedin-48.png";

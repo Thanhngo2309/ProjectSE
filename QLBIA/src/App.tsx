@@ -8,7 +8,7 @@ function App() {
     <div className="app">
       <NavBar />
       <Routes>
-        <Route path="/" element={<HomeScreen />} />
+        <Route path="/homescreen" element={<HomeScreen />} />
         <Route path="/cart" element={<Cart />} />
       </Routes>
     </div>

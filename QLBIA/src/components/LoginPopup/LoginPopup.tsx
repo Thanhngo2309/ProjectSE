@@ -6,7 +6,7 @@ interface LoginPopupProps {
 }
 
 const LoginPopup = ({ setShowLogin }: LoginPopupProps) => {
-  const [currState, setCurrState] = useState("Sign up");
+  const [currState] = useState("Sign up");
 
   return (
     <div className="login-popup">

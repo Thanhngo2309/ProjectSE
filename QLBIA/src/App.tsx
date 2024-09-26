@@ -1,8 +1,8 @@
 import HomeScreen from "./pages/Home/HomeScreen";
 import "./index.css";
-import { Route, Routes } from "react-router-dom";
+// import { Route, Routes } from "react-router-dom";
 import NavBar from "./components/navbar/NavBar";
-import Cart from "./pages/Cart/Cart";
+
 import Footer from "./components/Footer/Footer";
 import AppDownload from "./components/AppDownload/AppDownload";
 function App() {
@@ -10,11 +10,11 @@ function App() {
     <>
       <div className="app">
         <NavBar />
-
-        <Routes>
+        <HomeScreen />
+        {/* <Routes>
           <Route path="/ProjectSE/" element={<HomeScreen />} />
           <Route path="/cart" element={<Cart />} />
-        </Routes>
+        </Routes> */}
       </div>
       <AppDownload />
       <Footer />

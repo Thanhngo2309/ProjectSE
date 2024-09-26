@@ -52,3 +52,4 @@ export const menu_list = [
     club_image: menu_13
     },
 ]
+

@@ -1,31 +1,27 @@
 import HomeScreen from "./pages/Home/HomeScreen";
 import "./index.css";
-// import { Route, Routes } from "react-router-dom";
-import NavBar from "./components/navbar/NavBar";
+import { Route, Routes } from "react-router-dom";
 
 import Footer from "./components/Footer/Footer";
 import AppDownload from "./components/AppDownload/AppDownload";
-
 import LoginPopup from "./components/LoginPopup/LoginPopup";
+import TableManagement from "./pages/TableManagement/TableManagement"; // Import trang quản lý bàn
 import React, { useState } from "react";
+import NavBar from "./components/navbar/NavBar";
 
 const App: React.FC = () => {
-  const [showLogin, setShowLogin] = React.useState<boolean>(false);
+  const [showLogin, setShowLogin] = useState<boolean>(false);
 
   return (
     <>
-      {showLogin ? <LoginPopup setShowLogin={setShowLogin} /> : <></>}
+      {showLogin && <LoginPopup setShowLogin={setShowLogin} />}
       <div className="app">
         <NavBar setShowLogin={setShowLogin} />
-
-        <HomeScreen />
-        {/* <Routes>
-          <Route path="/ProjectSE/" element={<HomeScreen />} />
-          <Route path="/cart" element={<Cart />} />
-        </Routes> */}
-        {/* 
-        <Route path="/tables" element={<TableList />} />
-        <Route path="/invoices" element={<InvoiceList />} /> */}
+        <Routes>
+          <Route path="/" element={<HomeScreen />} />
+          <Route path="/bookings" element={<TableManagement />} />{" "}
+          {/* Trang quản lý bàn */}
+        </Routes>
       </div>
       <AppDownload />
       <Footer />

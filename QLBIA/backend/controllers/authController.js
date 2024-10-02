@@ -1,32 +1,55 @@
-// controllers/authController.js
-import User from '../models/userModel.js'; // Đảm bảo đường dẫn đúng
+import User from "../models/User.js";
+import bcrypt from "bcryptjs";
+import jwt from "jsonwebtoken";
 
-// Hàm đăng ký người dùng
-export const registerUser = async (req, res) => {
-    const { username, password } = req.body;
+// Đăng ký người dùng
+const register = async (req, res) => {
+  const { username, email, password, isAdmin } = req.body; // Thêm trường isAdmin
 
-    try {
-        const newUser = await User.create({ username, password });
-        res.status(201).json(newUser);
-    } catch (error) {
-        res.status(400).json({ message: 'Lỗi khi đăng ký người dùng', error });
+  try {
+    const hashedPassword = await bcrypt.hash(password, 10);
+    
+    const newUser = new User({
+      username,
+      email,
+      password: hashedPassword,
+      role: isAdmin ? 'admin' : 'user', // Gán vai trò dựa trên isAdmin
+    });
+
+    await newUser.save();
+
+    // Trả về thông tin người dùng bao gồm role
+    res.status(201).json({ 
+      message: "User registered successfully.", 
+      role: newUser.role // Trả về vai trò của người dùng
+    });
+  } catch (error) {
+    if (error.code === 11000) {
+      return res.status(400).json({ error: "Email already exists." });
     }
+    res.status(500).json({ error: error.message });
+  }
 };
 
-// Hàm đăng nhập người dùng
-export const loginUser = async (req, res) => {
-    const { username, password } = req.body;
+// Đăng nhập người dùng
+const login = async (req, res) => {
+  const { email, password } = req.body;
 
-    try {
-        const user = await User.findOne({ username });
+  try {
+    const user = await User.findOne({ email });
+    if (!user) return res.status(400).json({ error: "Invalid credentials" });
 
-        if (!user || user.password !== password) {
-            return res.status(401).json({ message: 'Tên đăng nhập hoặc mật khẩu không đúng' });
-        }
+    const isMatch = await bcrypt.compare(password, user.password);
+    if (!isMatch) return res.status(400).json({ error: "Invalid credentials" });
 
-        // Tạo JWT token ở đây nếu cần
-        res.status(200).json({ message: 'Đăng nhập thành công', user });
-    } catch (error) {
-        res.status(500).json({ message: 'Lỗi hệ thống', error });
-    }
+    const token = jwt.sign({ id: user._id, role: user.role }, process.env.JWT_SECRET, { expiresIn: "1h" });
+    
+    // Trả về thông tin người dùng bao gồm role
+    res.json({ token, role: user.role });
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
 };
+
+// Xuất khẩu từng hàm một
+export { register, login };

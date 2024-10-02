@@ -1,19 +1,26 @@
-import express from 'express';
-import { getAllTables, addTable, updateTableStatus, deleteTable } from '../controllers/tableController.js';
+import express from "express";
+import {
+  getTables,
+  addTable,
+  updateTable,
+  deleteTable,
+  bookTable,
+  checkoutTable,
+} from "../controllers/tableController.js"; // Nhập khẩu đúng cách
+import authMiddleware from "../middlewares/authMiddleware.js"; 
+import adminMiddleware from "../middlewares/adminMiddleware.js";
 
 const router = express.Router();
 
-// Route để lấy tất cả các bàn
-router.get('/', getAllTables);
+// Routes cho admin
+router.use(authMiddleware); // Xác thực cho tất cả các route bên dưới
+router.get("/", getTables); // Lấy danh sách bàn
 
-// Route để thêm bàn mới
-router.post('/', addTable);
+router.post("/", adminMiddleware, addTable); // Thêm bàn (admin)
+router.put("/:id", adminMiddleware, updateTable); // Cập nhật bàn (admin)
+router.delete("/:id", adminMiddleware, deleteTable); // Xóa bàn (admin)
 
-// Route để cập nhật trạng thái bàn
-router.put('/:id', updateTableStatus);
+router.post("/book", bookTable); // Đặt bàn (người dùng)
+router.post("/checkout", adminMiddleware, checkoutTable); // Tính tiền (admin)
 
-// Route để xóa bàn
-router.delete('/:id', deleteTable);
-
-// Xuất khẩu router
 export default router;

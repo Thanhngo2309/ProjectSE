@@ -1,9 +1,9 @@
 import express from 'express';
 import cors from 'cors';
 import { connectDB } from './config/db.js'; // Đảm bảo db.js xuất ra connectDB
-import authRoutes from './routes/authRoutes.js';
+import userRouters from './routes/userRouters.js';
 import tableRoutes from './routes/tableRoutes.js';
-import bookingRoutes from './routes/bookingRoutes.js';
+
 import dotenv from 'dotenv';
 
 // Load environment variables
@@ -21,8 +21,8 @@ connectDB();
 
 // Các API Routes
 app.use('/tables', tableRoutes);
-app.use('/auth', authRoutes);
-app.use('/bookings', bookingRoutes);
+app.use('/auth', userRouters);
+
 
 // Route gốc
 app.get('/', (req, res) => {

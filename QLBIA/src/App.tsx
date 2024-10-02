@@ -8,18 +8,9 @@ import AppDownload from "./components/AppDownload/AppDownload";
 
 import LoginPopup from "./components/LoginPopup/LoginPopup";
 import React, { useState } from "react";
-import TableList from "./components/TableList/TableList";
-import { Route } from "react-router-dom";
-import InvoiceList from "./components/InvoiceList/InvoiceList";
 
 const App: React.FC = () => {
   const [showLogin, setShowLogin] = React.useState<boolean>(false);
-
-  const [refreshTables, setRefreshTables] = useState(false);
-
-  function handleTableAdded(): void {
-    setRefreshTables(!refreshTables);
-  }
 
   return (
     <>
@@ -27,9 +18,7 @@ const App: React.FC = () => {
       <div className="app">
         <NavBar setShowLogin={setShowLogin} />
 
-        <TableList />
-        <InvoiceList />
-        {/* <HomeScreen /> */}
+        <HomeScreen />
         {/* <Routes>
           <Route path="/ProjectSE/" element={<HomeScreen />} />
           <Route path="/cart" element={<Cart />} />

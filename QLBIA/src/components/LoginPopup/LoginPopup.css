@@ -20,7 +20,7 @@
   animation: fadeIn 0.5s;
 }
 
-.login-popop-title {
+.login-popup-title {
   display: flex;
   justify-content: space-between;
   align-items: center;
